@@ -1,4 +1,5 @@
 ﻿using Capa_Modelo.LS;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data.Common;
 
@@ -66,7 +67,7 @@ namespace Capa_Logica.Lista_Simple
         }
         
         /// <summary>
-        /// 
+        /// Unico metodo que se Ejecuta en Program.cs
         /// </summary>
         public void Ejercicio1_LS()
         {
@@ -79,71 +80,100 @@ namespace Capa_Logica.Lista_Simple
         public void Llenar_LS()
         {
             Random random = new Random();
-            for (int i = 0; i<5; i++)
+            for (int i = 0; i<20; i++)
             {
-                Agregar_NodoInt_LS(random.Next(1, 31));
+                Agregar_NodoInt_LS(random.Next(1, 50));
             } 
         }
         public void Bubble_Sort()
         {
             NodoInt_LS nodoActual = cabeza;
-            Reordenar_Lista_Recursivo(nodoActual, nodoActual.Siguiente);
+            Ordenar_Lista_Recursivo(nodoActual);
 
         }
-        public void Reordenar_Lista_Recursivo(NodoInt_LS nodoActual, NodoInt_LS nodoSiguiente)
-        {
-            if (Lista_Ordenada())
-            {
 
-            }
-            else
-            {
-                int swap;
-                if (NodoSiguiente_Nulo(nodoSiguiente))
-                {
-                    nodoSiguiente = cabeza;
-                }
-
-                while(!NodoSiguiente_Nulo(nodoSiguiente) && Numero_Mayor_Siguiente(nodoActual, nodoSiguiente))
-                {
-                    Intercambiar_Valores(nodoActual, nodoSiguiente);
-                }
-
-                nodoActual = nodoSiguiente;
-                nodoSiguiente = nodoSiguiente.Siguiente;
-                Reordenar_Lista_Recursivo(nodoActual, nodoSiguiente);
-            }
-        }
-        public bool NodoSiguiente_Nulo(NodoInt_LS nodoSiguiente)
-        {
-            return (nodoSiguiente == null) ? true : false;
-        }
-
-        public bool Numero_Mayor_Siguiente(NodoInt_LS nodoActual, NodoInt_LS nodoSiguiente)
-        {
-            return (nodoActual.Valor > nodoSiguiente.Valor) ? true : false;
-        }
-
-        public void Intercambiar_Valores(NodoInt_LS nodoActual, NodoInt_LS nodoSiguiente)
+        public void Ordenar_Lista_Recursivo(NodoInt_LS nodoActual)
         {
             int swap;
-            swap = nodoActual.Valor;
-            nodoActual.Valor = nodoSiguiente.Valor;
-            nodoSiguiente.Valor = swap;
+            if (!Lista_Ordenada())
+            {
+                nodoActual = cabeza;
+
+                Recorrer_Lista(nodoActual);
+
+                if (nodoActual.Valor < cabeza.Valor)
+                {
+                    swap = nodoActual.Valor;
+                    nodoActual.Valor = cabeza.Valor;
+                    cabeza.Valor = swap;
+                }
+
+                Mostrar_Lista_Simple();
+
+                Ordenar_Lista_Recursivo(nodoActual);
+            }
+        }
+
+        public void Recorrer_Lista(NodoInt_LS nodoActual)
+        {
+            if (nodoActual.Siguiente != null)
+            {
+                int swap;
+                if (nodoActual.Valor > nodoActual.Siguiente.Valor)
+                {
+                    swap = nodoActual.Valor;
+                    nodoActual.Valor = nodoActual.Siguiente.Valor;
+                    nodoActual.Siguiente.Valor = swap;
+                }
+
+                nodoActual = nodoActual.Siguiente;
+
+                Recorrer_Lista(nodoActual);
+            }
         }
 
         public bool Lista_Ordenada()
         {
-            NodoInt_LS nodoActual = cabeza;
-            while (nodoActual != null && nodoActual.Siguiente!=null)
+            NodoInt_LS _nodoActual = cabeza;
+            while (_nodoActual != null && _nodoActual.Siguiente!=null)
             {
-                if(nodoActual.Valor > nodoActual.Siguiente.Valor)
+                if(_nodoActual.Valor > _nodoActual.Siguiente.Valor)
                 {
                     return false;
                 }
-                nodoActual = nodoActual.Siguiente;
+                _nodoActual = _nodoActual.Siguiente;
             }
             return true;
         }
+
+        /*public void prueba()
+        {
+            int swap;
+            while (!Lista_Ordenada())
+            {
+                NodoInt_LS nodoActual = cabeza;
+                while (nodoActual.Siguiente!=null)
+                {
+                    if (nodoActual.Valor> nodoActual.Siguiente.Valor)
+                    {
+                        swap = nodoActual.Valor;
+                        nodoActual.Valor = nodoActual.Siguiente.Valor;
+                        nodoActual.Siguiente.Valor = swap;
+                    }
+                    
+                    nodoActual = nodoActual.Siguiente;
+                }
+
+                if (nodoActual.Valor < cabeza.Valor)
+                {
+                    swap = nodoActual.Valor;
+                    nodoActual.Valor = cabeza.Valor;
+                    cabeza.Valor = swap;
+                }
+
+                Mostrar_Lista_Simple();
+            }
+            
+        }*/
     }
 }
