@@ -122,5 +122,23 @@ namespace Capa_Logica.Lista_Doble
         {
             return tammano;            
         }
+        /// <summary>
+        /// Unico metodo que se Ejecuta en Program.cs
+        /// </summary>
+        public void Ejercicio2_LD()
+        {
+            Llenar_LD();
+            Muestre_Lista_Inicio_Fin();
+
+        }
+
+        public void Llenar_LD()
+        {
+            Random random = new Random();
+            for(int i = 0; i<20; i++)
+            {
+                Agregue_NodoInt_LD_Final(random.Next(100, 500));
+            }
+        }
     }
 }
