@@ -88,10 +88,15 @@ namespace Capa_Logica.Cola
         public void Llenar_Cola()
         {
             Random random = new Random();
-            for( int i = 0; i < 5; i++ ) 
+            for( int i = 0; i < 20; i++ ) 
             {
                 Enqueue(random.Next(1,50));
             }
+        }
+
+        public void Shell_Sort()
+        {
+
         }
     }
 }
