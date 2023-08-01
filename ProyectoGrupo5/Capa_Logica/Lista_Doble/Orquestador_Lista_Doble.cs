@@ -231,7 +231,7 @@ namespace Capa_Logica.Lista_Doble
             }
             return true;
         }
-
+        
         /*public void Ordenar_Lista_Iterativo(NodoInt_LD nodoActual)
         {
             int swap;
