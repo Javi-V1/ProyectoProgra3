@@ -166,7 +166,6 @@ namespace Capa_Logica.Lista_Doble
 
                 Ordenar_Lista_Recursivo(nodoActual);
             }
-
         }
 
         public void Recorrer_Lista(NodoInt_LD nodoActual)
@@ -191,6 +190,7 @@ namespace Capa_Logica.Lista_Doble
                 Recorrer_Lista(nodoActual); 
             }
         }
+
         public void Cambio_Valores(NodoInt_LD nodoActual)
         {
             int swap;

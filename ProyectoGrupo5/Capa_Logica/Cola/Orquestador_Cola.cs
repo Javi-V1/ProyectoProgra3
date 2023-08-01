@@ -76,5 +76,22 @@ namespace Capa_Logica.Cola
                 Console.WriteLine("*-*-*-*Termina Cola*-*-*-*");
             }           
         }
+
+        public void Ejercicio3_Cola()
+        {
+            Llenar_Cola();
+            Imprimir_Cola();
+
+            //Imprimir_Cola();
+        }
+
+        public void Llenar_Cola()
+        {
+            Random random = new Random();
+            for( int i = 0; i < 5; i++ ) 
+            {
+                Enqueue(random.Next(1,50));
+            }
+        }
     }
 }
