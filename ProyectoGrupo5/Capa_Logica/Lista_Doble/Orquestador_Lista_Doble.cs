@@ -123,6 +123,7 @@ namespace Capa_Logica.Lista_Doble
         {
             return tammano;            
         }
+
         /// <summary>
         /// Unico metodo que se Ejecuta en Program.cs
         /// </summary>
@@ -130,7 +131,8 @@ namespace Capa_Logica.Lista_Doble
         {
             Llenar_LD();
             Muestre_Lista_Inicio_Fin();
-
+            Radix_Sort();
+            Muestre_Lista_Inicio_Fin();
         }
 
         public void Llenar_LD()
@@ -144,24 +146,20 @@ namespace Capa_Logica.Lista_Doble
 
         public void Radix_Sort()
         {
-            NodoInt_LD nodoActual = cabeza;
-            Ordenar_Lista_Recursivo(nodoActual);
+            Ordenar_Lista_Recursivo(cabeza);
         }
+
         public void Ordenar_Lista_Recursivo(NodoInt_LD nodoActual)
         {
-            int swap;
-            while (!Lista_Ordenada())
+            if(!Lista_Ordenada())
             {
                 nodoActual = cabeza;
 
-                Recorrer_Lista_Unidades(nodoActual);
-                Recorrer_Lista_Decenas(nodoActual);
+                Recorrer_Lista(nodoActual);
 
                 if (nodoActual.Valor < cabeza.Valor)
                 {
-                    swap = nodoActual.Valor;
-                    nodoActual.Valor = cabeza.Valor;
-                    cabeza.Valor = swap;
+                    Cambio_Valores(nodoActual,cabeza);
                 }
 
                 Muestre_Lista_Inicio_Fin();
@@ -170,44 +168,43 @@ namespace Capa_Logica.Lista_Doble
             }
 
         }
-        public void Recorrer_Lista_Decenas(NodoInt_LD nodoActual)
+
+        public void Recorrer_Lista(NodoInt_LD nodoActual)
         {
             if (nodoActual.Siguiente != null)
             {
-                int swap;
-
-                if (Valor_Decenas(nodoActual) > Valor_Decenas(nodoActual.Siguiente))
-                {
-                    swap = nodoActual.Valor;
-                    nodoActual.Valor = nodoActual.Siguiente.Valor;
-                    nodoActual.Siguiente.Valor = swap;
-                }
-
-                nodoActual = nodoActual.Siguiente;
-
-                Recorrer_Lista_Unidades(nodoActual);
-            }
-        }
-
-        public void Recorrer_Lista_Unidades(NodoInt_LD nodoActual)
-        {
-            if (nodoActual.Siguiente != null)
-            {
-                int swap;
-
                 if (Valor_Unidades(nodoActual) > Valor_Unidades(nodoActual.Siguiente))
                 {
-                    swap = nodoActual.Valor;
-                    nodoActual.Valor = nodoActual.Siguiente.Valor;
-                    nodoActual.Siguiente.Valor = swap;
+                    Cambio_Valores(nodoActual);
+                }
+                if (Valor_Decenas(nodoActual) > Valor_Decenas(nodoActual.Siguiente))
+                {
+                    Cambio_Valores(nodoActual);
+                }
+                if (Valor_Centenas(nodoActual) > Valor_Centenas(nodoActual.Siguiente))
+                {
+                    Cambio_Valores(nodoActual);
                 }
 
                 nodoActual = nodoActual.Siguiente;
 
-                Recorrer_Lista_Unidades(nodoActual);
+                Recorrer_Lista(nodoActual); 
             }
         }
-
+        public void Cambio_Valores(NodoInt_LD nodoActual)
+        {
+            int swap;
+            swap = nodoActual.Valor;
+            nodoActual.Valor = nodoActual.Siguiente.Valor;
+            nodoActual.Siguiente.Valor = swap;
+        }
+        public void Cambio_Valores(NodoInt_LD nodoActual, NodoInt_LD cabeza)
+        {
+            int swap;
+            swap = nodoActual.Valor;
+            nodoActual.Valor = cabeza.Valor;
+            cabeza.Valor = swap;
+        }
         public int Valor_Unidades(NodoInt_LD nodo)
         {
             return nodo.Valor % 100 % 10;
@@ -234,5 +231,48 @@ namespace Capa_Logica.Lista_Doble
             }
             return true;
         }
+
+        /*public void Ordenar_Lista_Iterativo(NodoInt_LD nodoActual)
+        {
+            int swap;
+            while (!Lista_Ordenada())
+            {
+                nodoActual = cabeza;
+
+                while (nodoActual.Siguiente != null)
+                {
+                    if (Valor_Unidades(nodoActual) > Valor_Unidades(nodoActual.Siguiente))
+                    {
+                        swap = nodoActual.Valor;
+                        nodoActual.Valor = nodoActual.Siguiente.Valor;
+                        nodoActual.Siguiente.Valor = swap;
+                    }
+                    if (Valor_Decenas(nodoActual) > Valor_Decenas(nodoActual.Siguiente))
+                    {
+                        swap = nodoActual.Valor;
+                        nodoActual.Valor = nodoActual.Siguiente.Valor;
+                        nodoActual.Siguiente.Valor = swap;
+                    }
+                    if (Valor_Centenas(nodoActual) > Valor_Centenas(nodoActual.Siguiente))
+                    {
+                        swap = nodoActual.Valor;
+                        nodoActual.Valor = nodoActual.Siguiente.Valor;
+                        nodoActual.Siguiente.Valor = swap;
+                    }
+
+                    nodoActual = nodoActual.Siguiente;
+                }
+
+                if (nodoActual.Valor < cabeza.Valor)
+                {
+                    swap = nodoActual.Valor;
+                    nodoActual.Valor = cabeza.Valor;
+                    cabeza.Valor = swap;
+                }
+
+                Muestre_Lista_Inicio_Fin();
+            }
+
+        }*/
     }
 }

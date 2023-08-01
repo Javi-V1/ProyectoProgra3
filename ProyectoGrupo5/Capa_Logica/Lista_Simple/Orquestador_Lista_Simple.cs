@@ -1,4 +1,5 @@
-﻿using Capa_Modelo.LS;
+﻿using Capa_Modelo.LD;
+using Capa_Modelo.LS;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data.Common;
@@ -87,9 +88,7 @@ namespace Capa_Logica.Lista_Simple
         }
         public void Bubble_Sort()
         {
-            NodoInt_LS nodoActual = cabeza;
-            Ordenar_Lista_Recursivo(nodoActual);
-
+            Ordenar_Lista_Recursivo(cabeza);
         }
 
         public void Ordenar_Lista_Recursivo(NodoInt_LS nodoActual)
@@ -103,10 +102,7 @@ namespace Capa_Logica.Lista_Simple
 
                 if (nodoActual.Valor < cabeza.Valor)
                 {
-                    int swap;
-                    swap = nodoActual.Valor;
-                    nodoActual.Valor = cabeza.Valor;
-                    cabeza.Valor = swap;
+                    Cambio_Valores(nodoActual, cabeza);
                 }
 
                 Mostrar_Lista_Simple();
@@ -119,18 +115,31 @@ namespace Capa_Logica.Lista_Simple
         {
             if (nodoActual.Siguiente != null)
             {
-                int swap;
+                
                 if (nodoActual.Valor > nodoActual.Siguiente.Valor)
                 {
-                    swap = nodoActual.Valor;
-                    nodoActual.Valor = nodoActual.Siguiente.Valor;
-                    nodoActual.Siguiente.Valor = swap;
+                    Cambio_Valores(nodoActual);
                 }
 
                 nodoActual = nodoActual.Siguiente;
 
                 Recorrer_Lista(nodoActual);
             }
+        }
+
+        public void Cambio_Valores(NodoInt_LS nodoActual)
+        {
+            int swap;
+            swap = nodoActual.Valor;
+            nodoActual.Valor = nodoActual.Siguiente.Valor;
+            nodoActual.Siguiente.Valor = swap;
+        }
+        public void Cambio_Valores(NodoInt_LS nodoActual, NodoInt_LS cabeza)
+        {
+            int swap;
+            swap = nodoActual.Valor;
+            nodoActual.Valor = cabeza.Valor;
+            cabeza.Valor = swap;
         }
 
         public bool Lista_Ordenada()
