@@ -94,7 +94,7 @@ namespace Capa_Logica.Lista_Simple
 
         public void Ordenar_Lista_Recursivo(NodoInt_LS nodoActual)
         {
-            int swap;
+            
             if (!Lista_Ordenada())
             {
                 nodoActual = cabeza;
@@ -103,6 +103,7 @@ namespace Capa_Logica.Lista_Simple
 
                 if (nodoActual.Valor < cabeza.Valor)
                 {
+                    int swap;
                     swap = nodoActual.Valor;
                     nodoActual.Valor = cabeza.Valor;
                     cabeza.Valor = swap;
