@@ -1,4 +1,6 @@
 ﻿using Capa_Modelo.Cola;
+using Capa_Modelo.LD;
+using Capa_Modelo.Pila;
 
 namespace Capa_Logica.Cola
 {
@@ -81,13 +83,14 @@ namespace Capa_Logica.Cola
         {
             Llenar_Cola();
             Imprimir_Cola();
-            //Imprimir_Cola();
+            Shell_Sort();
+            Imprimir_Cola();
         }
 
         public void Llenar_Cola()
         {
             Random random = new Random();
-            for( int i = 0; i < 20; i++ ) 
+            for( int i = 0; i < 8; i++ ) 
             {
                 Enqueue(random.Next(1,50));
             }
@@ -95,12 +98,57 @@ namespace Capa_Logica.Cola
 
         public void Shell_Sort()
         {
-            prueba(cabeza);
+            int gap = (length / 2);
+            int contador = 0;
+            Obtener_Valores_Cambiar(cabeza, gap, contador);
         }
 
-        public void prueba(NodoInt_Cola nodoActual)
+        public void prueba(NodoInt_Cola nodoActual, int gap)
+        {
+             
+        }
+        public void Obtener_Valores_Cambiar(NodoInt_Cola nodoActual, int gap, int contador)
         {
 
+             if (gap!=0) 
+             {
+                contador++;
+                int valor1;
+                int valor2;
+                valor1 = Dequeue().Valor;
+                for (int i = 0; i < gap; i++)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                }
+                valor2 = nodoActual.Valor;
+                if (valor1 > valor2)
+                {
+                    nodoActual.Valor = valor1;
+                    Enqueue(valor2);
+                    Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
+                }
+                else
+                {
+                    Enqueue(valor1);
+                }
+                nodoActual = cabeza;
+                gap--;
+                Console.WriteLine(contador);
+                Obtener_Valores_Cambiar(nodoActual, gap, contador);
+            }
+        }
+        public bool Lista_Ordenada()
+        {
+            NodoInt_Cola _nodoActual = cabeza;
+            while (_nodoActual != null && _nodoActual.Siguiente != null)
+            {
+                if (_nodoActual.Valor > _nodoActual.Siguiente.Valor)
+                {
+                    return false;
+                }
+                _nodoActual = _nodoActual.Siguiente;
+            }
+            return true;
         }
     }
 }
