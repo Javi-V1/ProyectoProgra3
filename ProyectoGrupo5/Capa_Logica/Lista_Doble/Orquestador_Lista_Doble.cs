@@ -172,7 +172,7 @@ namespace Capa_Logica.Lista_Doble
         {
             if (nodoActual.Siguiente != null)
             {
-                if (Valor_Unidades(nodoActual) > Valor_Unidades(nodoActual.Siguiente))
+                if (Valor_Unidades(nodoActual) > Valor_Unidades(nodoActual.Siguiente) )
                 {
                     Cambio_Valores(nodoActual);
                 }
@@ -180,12 +180,12 @@ namespace Capa_Logica.Lista_Doble
                 {
                     Cambio_Valores(nodoActual);
                 }
-                if (Valor_Centenas(nodoActual) > Valor_Centenas(nodoActual.Siguiente))
+                if(Valor_Centenas(nodoActual) > Valor_Centenas(nodoActual.Siguiente))
                 {
                     Cambio_Valores(nodoActual);
                 }
 
-                nodoActual = nodoActual.Siguiente;
+                    nodoActual = nodoActual.Siguiente;
 
                 Recorrer_Lista(nodoActual); 
             }

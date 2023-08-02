@@ -81,7 +81,7 @@ namespace Capa_Logica.Cola
         {
             Llenar_Cola();
             Imprimir_Cola();
-
+            Console.WriteLine(length); 
             //Imprimir_Cola();
         }
 
@@ -95,6 +95,11 @@ namespace Capa_Logica.Cola
         }
 
         public void Shell_Sort()
+        {
+
+        }
+
+        public void prueba()
         {
 
         }
