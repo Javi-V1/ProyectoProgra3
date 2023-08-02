@@ -81,7 +81,6 @@ namespace Capa_Logica.Cola
         {
             Llenar_Cola();
             Imprimir_Cola();
-            Console.WriteLine(length); 
             //Imprimir_Cola();
         }
 
@@ -96,10 +95,10 @@ namespace Capa_Logica.Cola
 
         public void Shell_Sort()
         {
-
+            prueba(cabeza);
         }
 
-        public void prueba()
+        public void prueba(NodoInt_Cola nodoActual)
         {
 
         }
