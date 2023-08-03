@@ -86,7 +86,6 @@ namespace Capa_Logica.Cola
             Llenar_Cola();
             Imprimir_Cola();
             Shell_Sort();
-            Imprimir_Cola();
         }
 
         public void Llenar_Cola()
@@ -114,6 +113,7 @@ namespace Capa_Logica.Cola
                 while (gap > 0)
                 {
                     Recorrer_cola(cabeza, gap);
+                    Imprimir_Cola();
                     gap /= 2;
                 }
             }
@@ -123,7 +123,6 @@ namespace Capa_Logica.Cola
         {
             while (nodoActual != null && nodoActual.Siguiente != null)
             {
-                Console.WriteLine("Gap: " + gap);
                 // Se recolectan los valores según el gap para posteriormente compararlos e intercambiarlos
                 int valor1 = nodoActual.Valor;
 
@@ -142,12 +141,9 @@ namespace Capa_Logica.Cola
                 {
                     nodoActual.Valor = valor2;
                     nodoGap.Valor = valor1;
-                    Console.WriteLine("Se cambiaron valores");
                 }
 
                 nodoActual = nodoActual.Siguiente; // Avanzar al siguiente nodo
-
-                Imprimir_Cola();
             }
 
             nodoActual = refCabeza; // Volver al inicio para el siguiente ciclo del while
