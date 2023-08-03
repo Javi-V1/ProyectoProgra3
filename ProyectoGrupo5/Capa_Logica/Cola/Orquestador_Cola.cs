@@ -118,25 +118,27 @@ namespace Capa_Logica.Cola
             Console.WriteLine("gap : " + gap);
 
 
-            NodoInt_Cola aux = nodoActual;
-            int valor1 = aux.Valor;
+            int valor1 = nodoActual.Valor;
             for (int i = 0; i < gap; i++)
             {
-                aux = aux.Siguiente;
+                nodoActual = nodoActual.Siguiente;
             }
-            int valor2 = aux.Valor;
+            int valor2 = nodoActual.Valor;
 
             if (valor1 > valor2)
             {
-                Enqueue(valor2);
+                //Enqueue(valor2);
+                nodoActual.Valor = valor2;  
 
-                for (int i = 0; i < length - 1; i++)
+                for (int i = 0; i < length; i++)
                 {
                     Enqueue(Dequeue().Valor);
                 }
 
-                Enqueue(valor1);
+                // Enqueue(valor1);
+                nodoActual.Valor= valor1;
                 Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
+                Imprimir_Cola();
             }
         }
 
