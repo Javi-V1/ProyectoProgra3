@@ -108,12 +108,16 @@ namespace Capa_Logica.Cola
         public void Controlador(NodoInt_Cola refCabeza)
         {
             int gap = length / 2;
-            //gap /= 2;
-            //while (gap > 0)
+            while (!Lista_Ordenada())
             {
-                Recorrer_cola(refCabeza, gap);
-                //gap /= 2;
+                gap = length / 2;
+                while (gap > 0)
+                {
+                    Recorrer_cola(refCabeza, gap);
+                    gap /= 2;
+                }
             }
+            
         }
 
         public void Recorrer_cola(NodoInt_Cola nodoActual, int gap)
@@ -154,10 +158,16 @@ namespace Capa_Logica.Cola
                 Imprimir_Cola();
                 //Console.WriteLine(refCabeza.Valor);
                 nodoActual = refCabeza;
+
+                //Se actualiza la cabeza por haberse encontrado el valor minimo, y para eventualmente ayudar a imprimir en orden la lista
+                if (refCabeza.Valor < cabeza.Valor)
+                {
+                    cabeza = refCabeza;
+                }
                 //Console.WriteLine(nodoActual.Valor);
 
                 nodoActual = nodoActual.Siguiente;
-                refCabeza = nodoActual;
+                refCabeza.Siguiente = nodoActual;
                 //Console.WriteLine(nodoActual.Valor);
                 Recorrer_cola(nodoActual, gap);
             }
