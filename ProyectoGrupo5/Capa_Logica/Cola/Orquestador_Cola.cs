@@ -1,6 +1,7 @@
 ﻿using Capa_Modelo.Cola;
 using Capa_Modelo.LD;
 using Capa_Modelo.Pila;
+using System.Runtime.Serialization.Formatters;
 
 namespace Capa_Logica.Cola
 {
@@ -84,7 +85,7 @@ namespace Capa_Logica.Cola
             Llenar_Cola();
             Imprimir_Cola();
             Shell_Sort();
-            Imprimir_Cola();
+            //Imprimir_Cola();
         }
 
         public void Llenar_Cola()
@@ -98,45 +99,92 @@ namespace Capa_Logica.Cola
 
         public void Shell_Sort()
         {
-            int gap = (length / 2);
-            int contador = 0;
-            Obtener_Valores_Cambiar(cabeza, gap, contador);
+            //prueba(cabeza);
+            Controlador(cabeza);
         }
 
-        public void prueba(NodoInt_Cola nodoActual, int gap)
+        public void Controlador(NodoInt_Cola cabeza)
         {
-             
+            int gap = length / 2;
+            while(gap > 0)
+            {
+                Recorrer_cola(cabeza, gap);
+                gap/=2;
+            }
         }
-        public void Obtener_Valores_Cambiar(NodoInt_Cola nodoActual, int gap, int contador)
-        {
 
-             if (gap!=0) 
+        public void Recorrer_cola(NodoInt_Cola nodoActual, int gap)
+        {
+            Console.WriteLine("gap : " + gap);
+
+
+            NodoInt_Cola aux = nodoActual;
+            int valor1 = aux.Valor;
+            for (int i = 0; i < gap; i++)
+            {
+                aux = aux.Siguiente;
+            }
+            int valor2 = aux.Valor;
+
+            if (valor1 > valor2)
+            {
+                Enqueue(valor2);
+
+                for (int i = 0; i < length - 1; i++)
+                {
+                    Enqueue(Dequeue().Valor);
+                }
+
+                Enqueue(valor1);
+                Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
+            }
+        }
+
+        public void malo(NodoInt_Cola nodoActual, int gap, int contador)
+        {
+            Console.WriteLine("gap : " + gap);
+            Console.WriteLine("contador: " + contador);
+
+            if (contador!= (length / 2)-1)
              {
-                contador++;
-                int valor1;
-                int valor2;
-                valor1 = Dequeue().Valor;
+                //Obtiene los valores
+                int valor1 = Dequeue().Valor;
+                NodoInt_Cola aux = nodoActual;
                 for (int i = 0; i < gap; i++)
                 {
-                    nodoActual = nodoActual.Siguiente;
+                    aux = aux.Siguiente;
                 }
-                valor2 = nodoActual.Valor;
+                int valor2 = aux.Valor;
+
+                //Realiza el cambio de los valores y se regreza a la cabeza
                 if (valor1 > valor2)
                 {
-                    nodoActual.Valor = valor1;
                     Enqueue(valor2);
+                    
+                    for(int i = 0; i < length-1; i++)
+                    {
+                        Enqueue(Dequeue().Valor);   
+                    }
+
+                    Enqueue(valor1);
                     Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
                 }
                 else
                 {
                     Enqueue(valor1);
+                    for (int i = 0; i < length - 1; i++)
+                    {
+                        Enqueue(Dequeue().Valor);
+                    }
                 }
-                nodoActual = cabeza;
-                gap--;
-                Console.WriteLine(contador);
-                Obtener_Valores_Cambiar(nodoActual, gap, contador);
+
+                nodoActual = nodoActual.Siguiente;
+                contador++;
+                malo(nodoActual, gap, contador);
+
             }
         }
+
         public bool Lista_Ordenada()
         {
             NodoInt_Cola _nodoActual = cabeza;
