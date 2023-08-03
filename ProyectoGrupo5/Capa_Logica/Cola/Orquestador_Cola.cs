@@ -85,7 +85,7 @@ namespace Capa_Logica.Cola
             Llenar_Cola();
             Imprimir_Cola();
             Shell_Sort();
-            //Imprimir_Cola();
+            Imprimir_Cola();
         }
 
         public void Llenar_Cola()
@@ -137,51 +137,6 @@ namespace Capa_Logica.Cola
 
                 Enqueue(valor1);
                 Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
-            }
-        }
-
-        public void malo(NodoInt_Cola nodoActual, int gap, int contador)
-        {
-            Console.WriteLine("gap : " + gap);
-            Console.WriteLine("contador: " + contador);
-
-            if (contador!= (length / 2)-1)
-             {
-                //Obtiene los valores
-                int valor1 = Dequeue().Valor;
-                NodoInt_Cola aux = nodoActual;
-                for (int i = 0; i < gap; i++)
-                {
-                    aux = aux.Siguiente;
-                }
-                int valor2 = aux.Valor;
-
-                //Realiza el cambio de los valores y se regreza a la cabeza
-                if (valor1 > valor2)
-                {
-                    Enqueue(valor2);
-                    
-                    for(int i = 0; i < length-1; i++)
-                    {
-                        Enqueue(Dequeue().Valor);   
-                    }
-
-                    Enqueue(valor1);
-                    Console.WriteLine("Se cambiaron los valores " + valor1 + " por " + valor2);
-                }
-                else
-                {
-                    Enqueue(valor1);
-                    for (int i = 0; i < length - 1; i++)
-                    {
-                        Enqueue(Dequeue().Valor);
-                    }
-                }
-
-                nodoActual = nodoActual.Siguiente;
-                contador++;
-                malo(nodoActual, gap, contador);
-
             }
         }
 
