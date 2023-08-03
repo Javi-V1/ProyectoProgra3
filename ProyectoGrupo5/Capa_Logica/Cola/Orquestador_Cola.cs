@@ -104,6 +104,7 @@ namespace Capa_Logica.Cola
         public void Shell_Sort()
         {
             Controlador(cabeza);
+            Imprimir_Cola();
         }
 
         public void Controlador(NodoInt_Cola cabeza)
@@ -115,7 +116,7 @@ namespace Capa_Logica.Cola
                 while (gap > 0)
                 {
                     Recorrer_cola(cabeza, gap);
-                    Imprimir_Cola();
+                    //Imprimir_Cola();
                     gap /= 2;
                 }
             }

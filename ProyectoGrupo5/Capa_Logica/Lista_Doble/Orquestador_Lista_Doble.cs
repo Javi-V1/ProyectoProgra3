@@ -162,7 +162,7 @@ namespace Capa_Logica.Lista_Doble
                     Cambio_Valores(nodoActual,cabeza);
                 }
 
-                Muestre_Lista_Inicio_Fin();
+                //Muestre_Lista_Inicio_Fin();
 
                 Ordenar_Lista_Recursivo(nodoActual);
             }

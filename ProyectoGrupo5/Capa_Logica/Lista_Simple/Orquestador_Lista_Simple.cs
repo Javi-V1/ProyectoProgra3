@@ -105,7 +105,7 @@ namespace Capa_Logica.Lista_Simple
                     Cambio_Valores(nodoActual, cabeza);
                 }
 
-                Mostrar_Lista_Simple();
+                //Mostrar_Lista_Simple();
 
                 Ordenar_Lista_Recursivo(nodoActual);
             }
