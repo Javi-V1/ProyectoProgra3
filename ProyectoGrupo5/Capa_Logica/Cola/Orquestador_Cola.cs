@@ -91,7 +91,7 @@ namespace Capa_Logica.Cola
         public void Llenar_Cola()
         {
             Random random = new Random();
-            for( int i = 0; i < 8; i++ ) 
+            for( int i = 0; i < 20; i++ ) 
             {
                 Enqueue(random.Next(1,50));
             }
@@ -123,30 +123,24 @@ namespace Capa_Logica.Cola
         {
             while (nodoActual != null && nodoActual.Siguiente != null)
             {
-                // Se recolectan los valores según el gap para posteriormente compararlos e intercambiarlos
+                NodoInt_Cola aux = nodoActual;
                 int valor1 = nodoActual.Valor;
-
-                NodoInt_Cola nodoGap = nodoActual;
-                for (int i = 0; i < gap && nodoGap != null; i++)
+                for (int i = 0; i < gap && aux != null; i++)
                 {
-                    nodoGap = nodoGap.Siguiente;
+                    aux = aux.Siguiente;
                 }
+                if (aux == null) break;
+                int valor2 = aux.Valor;
 
-                if (nodoGap == null) break; // Si el nodoGap es null, no hay más elementos en la brecha
-
-                int valor2 = nodoGap.Valor;
-
-                // Se realiza el intercambio de valores
                 if (valor1 > valor2)
                 {
                     nodoActual.Valor = valor2;
-                    nodoGap.Valor = valor1;
+                    aux.Valor = valor1;
                 }
-
-                nodoActual = nodoActual.Siguiente; // Avanzar al siguiente nodo
+                nodoActual = nodoActual.Siguiente;
             }
 
-            nodoActual = refCabeza; // Volver al inicio para el siguiente ciclo del while
+            nodoActual = refCabeza;
         }
 
         public bool Lista_Ordenada()

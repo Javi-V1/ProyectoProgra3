@@ -75,7 +75,6 @@ namespace Capa_Logica.Lista_Simple
             Llenar_LS();
             Mostrar_Lista_Simple();
             Bubble_Sort();
-            Mostrar_Lista_Simple();
         }
 
         public void Llenar_LS()
@@ -89,6 +88,7 @@ namespace Capa_Logica.Lista_Simple
         public void Bubble_Sort()
         {
             Ordenar_Lista_Recursivo(cabeza);
+            Mostrar_Lista_Simple();
         }
 
         public void Ordenar_Lista_Recursivo(NodoInt_LS nodoActual)

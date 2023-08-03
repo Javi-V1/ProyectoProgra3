@@ -132,7 +132,6 @@ namespace Capa_Logica.Lista_Doble
             Llenar_LD();
             Muestre_Lista_Inicio_Fin();
             Radix_Sort();
-            Muestre_Lista_Inicio_Fin();
         }
 
         public void Llenar_LD()
@@ -147,6 +146,7 @@ namespace Capa_Logica.Lista_Doble
         public void Radix_Sort()
         {
             Ordenar_Lista_Recursivo(cabeza);
+            Muestre_Lista_Inicio_Fin();
         }
 
         public void Ordenar_Lista_Recursivo(NodoInt_LD nodoActual)
