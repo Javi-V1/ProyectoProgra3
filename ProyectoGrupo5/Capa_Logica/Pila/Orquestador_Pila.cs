@@ -75,7 +75,35 @@ namespace Capa_Logica.Pila
 
             }
             Console.WriteLine("+-+- Termina Pila-+-+");
+        }
 
+        public void Ejercicio4_Pila()
+        {
+
+        }
+
+        public void LLenar_Pila()
+        {
+
+        }
+
+        public void Strand_Sort()
+        {
+
+        }
+
+        public bool Lista_Ordenada()
+        {
+            NodoInt_Pila _nodoActual = cabeza;
+            while (_nodoActual != null && _nodoActual.Siguiente != null)
+            {
+                if (_nodoActual.Valor > _nodoActual.Siguiente.Valor)
+                {
+                    return false;
+                }
+                _nodoActual = _nodoActual.Siguiente;
+            }
+            return true;
         }
     }
 }

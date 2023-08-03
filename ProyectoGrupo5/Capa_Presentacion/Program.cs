@@ -5,10 +5,10 @@ using Capa_Logica.Pila;
 
 //Orquestador_LS = new Orquestador_Lista_Simple();
 //Orquestador_Lista_Doble orquestador_LD = new Orquestador_Lista_Doble();
-Orquestador_Cola orquestador_Cola   = new Orquestador_Cola();
-//Orquestador_Pila orquestador_Pila = new Orquestador_Pila();
+//Orquestador_Cola orquestador_Cola   = new Orquestador_Cola();
+Orquestador_Pila orquestador_Pila = new Orquestador_Pila();
 
 //orquestador_LS.Ejercicio1_LS();
 //orquestador_LD.Ejercicio2_LD();
-orquestador_Cola.Ejercicio3_Cola();
-
+//orquestador_Cola.Ejercicio3_Cola();
+orquestador_Pila.Ejercicio4_Pila();
