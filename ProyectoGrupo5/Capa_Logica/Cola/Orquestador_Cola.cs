@@ -86,7 +86,7 @@ namespace Capa_Logica.Cola
             Llenar_Cola();
             Imprimir_Cola();
             Shell_Sort();
-            //Imprimir_Cola();
+            Imprimir_Cola();
         }
 
         public void Llenar_Cola()
@@ -102,10 +102,10 @@ namespace Capa_Logica.Cola
         public void Shell_Sort()
         {
             
-            Controlador(refCabeza);
+            Controlador(cabeza);
         }
 
-        public void Controlador(NodoInt_Cola refCabeza)
+        public void Controlador(NodoInt_Cola cabeza)
         {
             int gap = length / 2;
             while (!Lista_Ordenada())
@@ -113,64 +113,44 @@ namespace Capa_Logica.Cola
                 gap = length / 2;
                 while (gap > 0)
                 {
-                    Recorrer_cola(refCabeza, gap);
+                    Recorrer_cola(cabeza, gap);
                     gap /= 2;
                 }
             }
-            
         }
 
         public void Recorrer_cola(NodoInt_Cola nodoActual, int gap)
         {
-            if(nodoActual.Siguiente!= null||!Lista_Ordenada())
+            while (nodoActual != null && nodoActual.Siguiente != null)
             {
                 Console.WriteLine("Gap: " + gap);
-                int valor_1 = nodoActual.Valor;
-                for (int i = 0; i < gap; i++)
+                // Se recolectan los valores según el gap para posteriormente compararlos e intercambiarlos
+                int valor1 = nodoActual.Valor;
+
+                NodoInt_Cola nodoGap = nodoActual;
+                for (int i = 0; i < gap && nodoGap != null; i++)
                 {
-                    nodoActual = nodoActual.Siguiente;
+                    nodoGap = nodoGap.Siguiente;
                 }
-                int valor_2 = nodoActual.Valor;
 
-                //Console.WriteLine("Valor 1: " + valor_1 + "/ Valor 2: " + valor_2);
+                if (nodoGap == null) break; // Si el nodoGap es null, no hay más elementos en la brecha
 
-                //Se realiza el intercambio de valores
-                if (valor_1 > valor_2)
+                int valor2 = nodoGap.Valor;
+
+                // Se realiza el intercambio de valores
+                if (valor1 > valor2)
                 {
-                    nodoActual.Valor = valor_1;
-                    for (int i = gap; i > 0; i--)
-                    {
-                        nodoActual = nodoActual.Siguiente;
-                        Enqueue(Dequeue().Valor);
-                    }
-                    nodoActual.Valor = valor_2;
-                    refCabeza = nodoActual;
+                    nodoActual.Valor = valor2;
+                    nodoGap.Valor = valor1;
                     Console.WriteLine("Se cambiaron valores");
-
-                    //Se vuelve al mismo formato de antes de la lista
-                    for (int i = gap; i > 0; i--)
-                    {
-                        nodoActual = nodoActual.Siguiente;
-                        Enqueue(Dequeue().Valor);
-                    }
                 }
+
+                nodoActual = nodoActual.Siguiente; // Avanzar al siguiente nodo
 
                 Imprimir_Cola();
-                //Console.WriteLine(refCabeza.Valor);
-                nodoActual = refCabeza;
-
-                //Se actualiza la cabeza por haberse encontrado el valor minimo, y para eventualmente ayudar a imprimir en orden la lista
-                if (refCabeza.Valor < cabeza.Valor)
-                {
-                    cabeza = refCabeza;
-                }
-                //Console.WriteLine(nodoActual.Valor);
-
-                nodoActual = nodoActual.Siguiente;
-                refCabeza.Siguiente = nodoActual;
-                //Console.WriteLine(nodoActual.Valor);
-                Recorrer_cola(nodoActual, gap);
             }
+
+            nodoActual = refCabeza; // Volver al inicio para el siguiente ciclo del while
         }
 
         public bool Lista_Ordenada()
