@@ -81,6 +81,9 @@ namespace Capa_Logica.Cola
             }           
         }
 
+        /// <summary>
+        /// Unico metodo que se Ejecuta en Program.cs
+        /// </summary>
         public void Ejercicio3_Cola()
         {
             Llenar_Cola();
@@ -100,7 +103,6 @@ namespace Capa_Logica.Cola
 
         public void Shell_Sort()
         {
-            
             Controlador(cabeza);
         }
 
